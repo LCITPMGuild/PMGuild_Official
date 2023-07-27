@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Image Carousel with Titles, Hyperlinks, and Side Buttons</title>
+  <style>
+    /* Add any custom CSS styles here */
+    .carousel-container {
+      max-width: 600px;
+      margin: 0 auto;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .carousel-slide {
+      display: none;
+    }
+
+    .carousel-slide.active {
+      display: block;
+    }
+
+    .carousel-image {
+      max-width: 100%;
+      max-height: 300px; /* Adjust the maximum height of images as needed */
+      display: block;
+      margin: 0 auto;
+    }
+
+    .carousel-caption {
+      text-align: center;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    .carousel-controls {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 100%;
+    }
+
+    .carousel-control {
+      display: inline-block;
+      font-size: 24px;
+      cursor: pointer;
+      padding: 10px;
+      background-color: #ddd;
+      border-radius: 50%;
+      margin: 0 10px;
+    }
+
+    .carousel-control:hover {
+      background-color: #bbb;
+    }
+
+    .carousel-control.prev {
+      float: left;
+    }
+
+    .carousel-control.next {
+      float: right;
+    }
+  </style>
+</head>
+<body>
+
+<div class="carousel-container">
+  <div class="carousel-slide active">
+    <a href="assets/img/Amrit.jpeg" target="_blank">
+      <img src="" alt="Image 1" class="carousel-image">
+      <div class="carousel-caption">Image 1 Title</div>
+    </a>
+  </div>
+  <div class="carousel-slide">
+    <a href="image2.html" target="_blank">
+      <img src="images/image2.jpg" alt="Image 2" class="carousel-image">
+      <div class="carousel-caption">Image 2 Title</div>
+    </a>
+  </div>
+  <div class="carousel-slide">
+    <a href="image3.html" target="_blank">
+      <img src="images/image3.jpg" alt="Image 3" class="carousel-image">
+      <div class="carousel-caption">Image 3 Title</div>
+    </a>
+  </div>
+  <!-- Add more carousel slides for each image -->
+
+  <!-- Carousel Controls -->
+  <div class="carousel-controls">
+    <div class="carousel-control prev" onclick="prevSlide()">&#8249;</div>
+    <div class="carousel-control next" onclick="nextSlide()">&#8250;</div>
+  </div>
+</div>
+
+<script>
+  let currentSlide = 0;
+  const slides = document.getElementsByClassName("carousel-slide");
+
+  function showSlide(slideIndex) {
+    if (slideIndex >= slides.length) {
+      slideIndex = 0;
+    } else if (slideIndex < 0) {
+      slideIndex = slides.length - 1;
+    }
+    for (let i = 0; i < slides.length; i++) {
+      slides[i].classList.remove("active");
+    }
+    slides[slideIndex].classList.add("active");
+    currentSlide = slideIndex;
+  }
+
+  function prevSlide() {
+    showSlide(currentSlide - 1);
+  }
+
+  function nextSlide() {
+    showSlide(currentSlide + 1);
+  }
+
+  // Auto-rotate the carousel every 5 seconds (optional)
+  setInterval(() => {
+    nextSlide();
+  }, 5000);
+</script>
+
+</body>
+</html>
